@@ -10,9 +10,25 @@ pipeline {
     stage('Lint & Test') {
       steps {
         script {
-          sh 'docker build -t test-image -f docker/Dockerfile .'
-          sh 'docker run --rm test-image pytest --maxfail=1 --disable-warnings'
-          sh 'docker run --rm test-image flake8 .'
+          // Start all services in the background
+          sh 'docker-compose -f docker/docker-compose.yml up -d'
+          // Wait for the API to be healthy
+          sh '''
+          for i in {1..30}; do
+            if docker-compose -f docker/docker-compose.yml exec -T app curl -s http://localhost:8000/health | grep ok; then
+              echo "API is healthy!"
+              break
+            fi
+            echo "Waiting for API..."
+            sleep 2
+          done
+          '''
+          // Run tests inside the app container
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app pytest --maxfail=1 --disable-warnings'
+          // Run linting inside the app container
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app flake8 .'
+          // Tear down
+          sh 'docker-compose -f docker/docker-compose.yml down -v'
         }
       }
     }
