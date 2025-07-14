@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv
+venv/
+.env
+.env.*
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Test & coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+pytest_cache/
+
+# Docker
+**/docker-compose.override.yml
+**/docker-compose.local.yml
+**/docker-compose.dev.yml
+**/docker-compose.prod.yml
+**/Dockerfile*
+**/docker/
+
+# Alembic
+alembic.ini
+alembic/
+
+# Output
+output/
+
+# Misc
+*.bak
+*.tmp
+*.old
+*.orig
+.DS_Store
+Thumbs.db
+
+# System
+*.~
+
+# Exclude example env
+!.env.example
