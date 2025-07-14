@@ -2,8 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKER_IMAGE = "myorg/hr-helper:${env.BUILD_NUMBER}"
-    POSTGRES_USER = credentials('pg_user')
-    POSTGRES_PASSWORD = credentials('pg_pass')
+    DB_CREDS = credentials('postgres-db-credentials')
     REDIS_URL = 'redis://redis:6379/0'
     RABBITMQ_URL = 'amqp://guest:guest@rabbitmq:5672/'
   }
