@@ -12,6 +12,9 @@ pipeline {
         script {
           // Start all services in the background
           sh 'docker-compose -f docker/docker-compose.yml up -d'
+          // Rebuild app container to ensure dependencies are up to date
+          sh 'docker-compose -f docker/docker-compose.yml build app'
+          sh 'docker-compose -f docker/docker-compose.yml up -d app'
           // Wait for the API to be healthy
           sh '''
           for i in {1..30}; do
@@ -25,6 +28,7 @@ pipeline {
           '''
           // Debug: Check if app container is running and pytest is available
           sh 'docker-compose -f docker/docker-compose.yml ps'
+          sh 'docker-compose -f docker/docker-compose.yml logs app'
           sh 'docker-compose -f docker/docker-compose.yml exec -T app which pytest || echo "pytest not found"'
           sh 'docker-compose -f docker/docker-compose.yml exec -T app python -c "import pytest; print(f\'pytest version: {pytest.__version__}\')"'
           // Ensure logs directory exists
