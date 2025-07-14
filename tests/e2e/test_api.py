@@ -1,7 +1,6 @@
 """
 E2E-тесты для FastAPI API (pytest, httpx)
 """
-import pytest
 import httpx
 
 BASE_URL = "http://localhost:8000"

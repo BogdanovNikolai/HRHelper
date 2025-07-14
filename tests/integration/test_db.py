@@ -1,7 +1,6 @@
 """
 Пример интеграционного теста для PostgreSQL (pytest + testcontainers)
 """
-import pytest
 from testcontainers.postgres import PostgresContainer
 from sqlalchemy import create_engine
 
