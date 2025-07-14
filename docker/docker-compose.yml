@@ -16,6 +16,7 @@ services:
     command: ["python", "main.py"]
     volumes:
       - /var/lib/jenkins/workspace/HRHelper/logs:/app/logs
+      - /var/run/docker.sock:/var/run/docker.sock
 
   postgres:
     image: postgres:15
