@@ -11,6 +11,7 @@ app = FastAPI(title="HR Helper Platform")
 app.include_router(hh_router)
 app.include_router(avito_router)
 
+
 @app.get("/health")
 def health_check():
     """
@@ -18,4 +19,5 @@ def health_check():
     """
     return {"status": "ok"}
 
-# TODO: Подключить другие роуты и middlewares 
+
+# TODO: Подключить другие роуты и middlewares

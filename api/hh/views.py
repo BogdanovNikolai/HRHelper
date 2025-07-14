@@ -7,9 +7,10 @@ from typing import List
 
 router = APIRouter(prefix="/hh", tags=["hh"])
 
+
 @router.get("/resumes", response_model=List[Resume])
 def get_resumes():
     """
     Получить список резюме с hh.ru (пример)
     """
-    return [Resume(id="1", name="Иван Иванов", experience="3 года")] 
+    return [Resume(id="1", name="Иван Иванов", experience="3 года")]

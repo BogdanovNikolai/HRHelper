@@ -5,4 +5,4 @@ from typing import Optional
 class Vacancy(BaseModel):
     id: str
     title: str
-    company: Optional[str] = None 
+    company: Optional[str] = None
