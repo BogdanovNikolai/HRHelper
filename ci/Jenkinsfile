@@ -10,11 +10,10 @@ pipeline {
     stage('Lint & Test') {
       steps {
         script {
-          // Start all services in the background
-          sh 'docker-compose -f docker/docker-compose.yml up -d'
-          // Rebuild app container to ensure dependencies are up to date
-          sh 'docker-compose -f docker/docker-compose.yml build app'
-          sh 'docker-compose -f docker/docker-compose.yml up -d app'
+          // Clean up old containers and volumes
+          sh 'docker-compose -f docker/docker-compose.yml down -v || true'
+          // Build and start all services in the background
+          sh 'docker-compose -f docker/docker-compose.yml up -d --build'
           // Wait for the API to be healthy
           sh '''
           for i in {1..30}; do

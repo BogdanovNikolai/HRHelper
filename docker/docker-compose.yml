@@ -15,7 +15,7 @@ services:
       - "8000:8000"
     command: ["python", "main.py"]
     volumes:
-      - ../logs:/app/logs
+      - /var/lib/jenkins/workspace/HRHelper/logs:/app/logs
 
   postgres:
     image: postgres:15
