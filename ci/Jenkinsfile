@@ -48,7 +48,8 @@ pipeline {
     }
     stage('Migrate DB') {
       steps {
-        sh 'docker-compose -f docker/docker-compose.yml run --rm app alembic upgrade head'
+        // sh 'docker-compose -f docker/docker-compose.yml run --rm app alembic upgrade head'
+        // Alembic migration is commented out to skip DB migration during pipeline
       }
     }
     stage('Push Image') {
