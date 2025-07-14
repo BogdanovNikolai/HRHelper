@@ -23,6 +23,12 @@ pipeline {
             sleep 2
           done
           '''
+          // Debug: Check if app container is running and pytest is available
+          sh 'docker-compose -f docker/docker-compose.yml ps'
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app which pytest || echo "pytest not found"'
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app python -c "import pytest; print(f\'pytest version: {pytest.__version__}\')"'
+          // Ensure logs directory exists
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app mkdir -p /app/logs'
           // Run tests inside the app container
           sh 'docker-compose -f docker/docker-compose.yml exec -T app sh -c "pytest --maxfail=1 --disable-warnings | tee /app/logs/pytest.log"'
           // Run linting inside the app container
