@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+flake8
+pytest
+httpx
+# Остальные зависимости 

@@ -10,9 +10,11 @@ pipeline {
   stages {
     stage('Lint & Test') {
       steps {
-        sh 'pip install -r requirements.txt'
-        sh 'pytest --maxfail=1 --disable-warnings'
-        sh 'flake8 .'
+        script {
+          sh 'docker build -t test-image .'
+          sh 'docker run --rm test-image pytest --maxfail=1 --disable-warnings'
+          sh 'docker run --rm test-image flake8 .'
+        }
       }
     }
     stage('Build Docker') {

@@ -37,12 +37,12 @@ htmlcov/
 pytest_cache/
 
 # Docker
-**/docker-compose.override.yml
-**/docker-compose.local.yml
-**/docker-compose.dev.yml
-**/docker-compose.prod.yml
-**/Dockerfile*
-**/docker/
+# **/docker-compose.override.yml
+# **/docker-compose.local.yml
+# **/docker-compose.dev.yml
+# **/docker-compose.prod.yml
+# **/Dockerfile*
+# **/docker/
 
 # Alembic
 alembic.ini
