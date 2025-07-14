@@ -11,7 +11,7 @@ pipeline {
     stage('Lint & Test') {
       steps {
         script {
-          sh 'docker build -t test-image .'
+          sh 'docker build -t test-image -f docker/Dockerfile .'
           sh 'docker run --rm test-image pytest --maxfail=1 --disable-warnings'
           sh 'docker run --rm test-image flake8 .'
         }
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Build Docker') {
       steps {
-        sh 'docker build -t $DOCKER_IMAGE .'
+        sh 'docker build -t $DOCKER_IMAGE -f docker/Dockerfile .'
       }
     }
     stage('Migrate DB') {
