@@ -24,7 +24,7 @@ pipeline {
           done
           '''
           // Run tests inside the app container
-          sh 'docker-compose -f docker/docker-compose.yml exec -T app pytest --maxfail=1 --disable-warnings'
+          sh 'docker-compose -f docker/docker-compose.yml exec -T app sh -c "pytest --maxfail=1 --disable-warnings | tee /app/logs/pytest.log"'
           // Run linting inside the app container
           sh 'docker-compose -f docker/docker-compose.yml exec -T app flake8 .'
           // Tear down

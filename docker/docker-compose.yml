@@ -14,8 +14,8 @@ services:
     ports:
       - "8000:8000"
     command: ["python", "main.py"]
-    # volumes:
-    #   - ../src:/app/src
+    volumes:
+      - ../logs:/app/logs
 
   postgres:
     image: postgres:15
