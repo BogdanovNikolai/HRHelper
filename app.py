@@ -13,7 +13,9 @@ app.include_router(avito_router)
 
 @app.get("/health")
 def health_check():
-    """Проверка работоспособности сервиса"""
+    """
+    Проверка работоспособности сервиса
+    """
     return {"status": "ok"}
 
 # TODO: Подключить другие роуты и middlewares 
