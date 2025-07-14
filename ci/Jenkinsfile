@@ -48,7 +48,7 @@ pipeline {
     }
     stage('Migrate DB') {
       steps {
-        sh 'alembic upgrade head'
+        sh 'docker-compose -f docker/docker-compose.yml run --rm app alembic upgrade head'
       }
     }
     stage('Push Image') {
